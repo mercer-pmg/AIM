@@ -2,7 +2,10 @@
 
 library(shiny)
 
-# Define UI for application that draws a histogram
+createLink <- function(val) {
+  sprintf('<a href="https://www.google.com/#q=%s" target="_blank" class="btn btn-primary">More</a>',val)
+}
+
 ui <- fluidPage(
   
   # Application title
@@ -65,7 +68,8 @@ server <- function(input, output) {
     readBin("character") |>
     readr::read_csv(show_col_types = FALSE) |>
     dplyr::select(strategy, type, model, portfolio, tax_managed) |>
-    dplyr::distinct()
+    dplyr::distinct() |>
+    dplyr::mutate(more = createLink(strategy))
   
   types <- reactive({
     
@@ -89,15 +93,18 @@ server <- function(input, output) {
   dat <- reactive({
     df <- platform |>
       dplyr::filter(type %in% types()) |>
-      dplyr::filter(tax_managed %in% tax_mgmt())
+      dplyr::filter(tax_managed %in% tax_mgmt()) 
     
     df
   })
   
-  output$strategies <- DT::renderDataTable(
-    DT::datatable(dat(), options = list(paging = FALSE))
+  output$strategies <- DT::renderDataTable({
+    DT::datatable(
+      dat(), 
+      options = list(paging = FALSE),
+      escape  = FALSE)
     
-  )
+  }) 
 }
 
 # Run the application 
