@@ -31,13 +31,6 @@ ui <- fluidPage(
           "Equity Strategies", 
           "Fixed Income Strategies"),
         
-        selected = c(
-          "Market Series", 
-          "Multifactor Series", 
-          "Income Series", 
-          "Equity Strategies", 
-          "Fixed Income Strategies"),
-        
         inline = TRUE),
       
       checkboxGroupInput(
@@ -45,7 +38,6 @@ ui <- fluidPage(
         label   = "Tax-Managed",
         choiceNames = c("Yes", "No"),
         choiceValues = c(TRUE, FALSE),
-        selected = c(TRUE, FALSE),
         inline = TRUE)
       
       
@@ -61,6 +53,8 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   
+  
+  
   platform <- aws.s3::get_object(
     region = Sys.getenv("AWS_DEFAULT_REGION"),
     key    = Sys.getenv("AWS_ACCESS_KEY_ID"),
@@ -73,9 +67,31 @@ server <- function(input, output) {
     dplyr::select(strategy, type, model, portfolio, tax_managed) |>
     dplyr::distinct()
   
+  types <- reactive({
+    
+    if(length(input$strategy_types) == 0) {
+      unique(platform$type)} else {
+        input$strategy_types
+      }
+    
+  })
+  
+  tax_mgmt <- reactive({
+    
+    if(length(input$tm_status) == 0) {
+      unique(platform$tax_managed)
+    } else {
+      input$tm_status
+    }
+    
+  })
+  
   dat <- reactive({
-    platform |>
-      dplyr::filter(type %in% input$strategy_types) 
+    df <- platform |>
+      dplyr::filter(type %in% types()) |>
+      dplyr::filter(tax_managed %in% tax_mgmt())
+    
+    df
   })
   
   output$strategies <- DT::renderDataTable(
