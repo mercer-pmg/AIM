@@ -1,0 +1,7 @@
+.bslib-value-box[data-full-screen="false"] > .card-body > .value-box-area > .card-reveal-full-screen,
+.bslib-value-box[data-full-screen="false"] > .card-body > .value-box-grid > .value-box-area > .card-reveal-full-screen {
+  display: none;
+}
+
+
+
