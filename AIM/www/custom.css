@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap'); 
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
+ 
+ .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather';
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+body {
+    font-family: 'IBM Plex Sans';
+    font-weight: 400;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+ 
+ .skin-blue .main-header .logo {
+  text-align: left;
+  font-family: 'Merriweather';
+  background-color: #820361;
+}
+    
+        
+.skin-blue .main-header .logo:hover {
+  background-color: #820361;
+}
+   
+        
+.skin-blue .main-header .navbar {
+  background-color: #820361;
+}   
+  
+        
+.skin-blue .main-sidebar {
+  background-color: #454759;
+  font-family: 'Merriweather';
+}
+
+.irs--shiny .irs-from, .irs--shiny .irs-to, .irs--shiny .irs-single {
+    color: #fff;
+    text-shadow: none;
+    padding: 1px 3px;
+    background-color: #820361;
+    border-radius: 3px;
+    font-size: 11px;
+    line-height: 1.333;
+  
+}
+
+.irs--shiny .irs-bar {
+    top: 25px;
+    height: 8px;
+    border-top: 1px solid #820361;
+    border-bottom: 1px solid #820361;
+    background: #820361;
+    cursor: s-resize;
+    z-index: 2;
+}
+
+
+/* active sidebar menu item */
+.skin-blue .main-sidebar .sidebar .sidebar-menu a:hover{
+        background-color: white;
+        color:black;
+}
+ 
+        
+.skin-blue .main-header .navbar .sidebar-toggle:hover{
+  background-color: #000000;
+}
+
+.skin-blue .sidebar-menu > li.active > a,
+.skin-blue .sidebar-menu > li:hover > a {
+  border-left-color: #820361;
+}
+
+input[type="checkbox"] {
+  accent-color: #820361;
+}
+
+.btn-default {
+    background-color: #820361;
+    color: white;
+    border-color: #ddd;
+}
+
+.progress-bar {
+    background-color: #454759;
+
+}
+
+/* checkbox fill color*/
+.form-check-input:checked, .shiny-input-container .checkbox input:checked, .shiny-input-container .checkbox-inline input:checked, .shiny-input-container .radio input:checked, .shiny-input-container .radio-inline input:checked {
+    background-color: #820361;
+    border-color: #820361;
+}
+
+/* Range input handles*/
+.irs--shiny .irs-handle {
+    top: 17px;
+    width: 19px;
+    height: 19px;
+    border: 1px solid #ababab;
+    background-color: #dedede;
+    box-shadow: none;
+    border-radius: 19px;
+    z-index: 2;
+}
+
+.irs--shiny .irs-handle.state_hover, .irs--shiny .irs-handle:hover {
+    background: #820361;
+}

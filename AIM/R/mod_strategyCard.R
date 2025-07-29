@@ -91,58 +91,28 @@ if(status == "Approved") {
   status_icon <- shiny::icon("star", "fa-solid", style = "color: #FFD43B")
 }
 
+  bslib::value_box(
+    title = id,
+    value = " ",
+    fill  = TRUE,
+    
+    p(paste0("Yield: ", yield)),
+    p(paste0("Expense Ratio: ", fee)),
+    p(paste0("Minimum: ", minimum)),
 
-bslib::value_box(
-  title = id,
-  value = " ",
-  fill  = TRUE,
-  p(paste0("Yield: ", yield)),
-  p(paste0("Expense Ratio: ", fee)),
-  p(paste0("Minimum: ", minimum)),
-  
-  card_body(
-    class = "card-reveal-full-screen",
-    p("Some text that displays in full screen."),
-    p("Does this text look right justified??? That's really weird.")
-  ),
-  showcase = status_icon,
-  full_screen = TRUE,
-  theme = bslib::value_box_theme(
-    bg = primary_col,
-    fg = secondary_col
+    showcase = status_icon,
+    
+    # showcase = if ((input[[paste0("value_box_full_screen_", id)]] == FALSE)) {
+    #   icon("expand")
+    # } else {
+    #   icon("star")
+    # },
+    
+    full_screen = TRUE,
+    theme = bslib::value_box_theme(
+      bg = primary_col,
+      fg = secondary_col
+    )
   )
-)
 }
 
-strategyCardServer <- function(id) {
-  # strategy_box <- renderUI({
-  #   
-  #   bslib::value_box(
-  #     title = id,
-  #     value = "XX",
-  #     fill  = TRUE,
-  #     p("Yield:"),
-  #     p("Expense Ratio:"),
-  #     p("Minimum:"),
-  #     p("Yield:"),
-  #     p("Expense Ratio:"),
-  #     p("Minimum:"),
-  #     p("Yield:"),
-  #     p("Expense Ratio:"),
-  #     p("Minimum:"),
-  #     
-  #     card_body(
-  #       class = "card-reveal-full-screen",
-  #       p("Some text that displays in full screen.")
-  #     ),
-  #     
-  #     showcase = "star",
-  #     full_screen = TRUE,
-  #     theme = bslib::value_box_theme(
-  #       bg = primary_col,
-  #       fg = secondary_col
-  #     )
-  #   )
-  #   
-  # })
-}
